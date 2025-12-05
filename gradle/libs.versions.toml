@@ -1,0 +1,16 @@
+[versions]
+spring-boot-version = "4.0.0"
+spring-dependency-management = "1.1.7"
+spock-groovy = "2.4-M7-groovy-5.0"
+
+[libraries]
+spock-core = { module = "org.spockframework:spock-core", version.ref = "spock-groovy" }
+spock-spring = { module = "org.spockframework:spock-spring", version.ref = "spock-groovy" }
+spock-bom = { module = "org.spockframework:spock-bom", version.ref = "spock-groovy" }
+
+[bundles]
+spock-spring-integration-testing = ["spock-core", "spock-spring"]
+
+[plugins]
+springBootVersion = { id = "org.springframework.boot", version.ref = "spring-boot-version" }
+springDependencyManagement = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
