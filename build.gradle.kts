@@ -25,7 +25,10 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-webmvc")
 	implementation("org.springframework.cloud:spring-cloud-starter-vault-config")
 	implementation("org.springframework.cloud:spring-cloud-stream")
-	implementation("org.springframework.cloud:spring-cloud-stream-binder-kafka")
+	implementation("org.springframework.cloud:spring-cloud-stream-binder-kafka") {
+		exclude(group = "org.apache.kafka", module = "kafka-clients")
+	}
+	implementation(libs.kafka.clients)
 	implementation("org.springframework.boot:spring-boot-starter-kafka")
 
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
@@ -33,11 +36,17 @@ dependencies {
 
     testImplementation(platform(libs.spock.bom))
     testImplementation(libs.bundles.spock.spring.integration.testing)
-	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
+	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test") {
+		exclude(group = "org.assertj", module = "assertj-core")
+	}
+	testImplementation(libs.assertj.core)
 	testImplementation("org.springframework.boot:spring-boot-testcontainers")
     testImplementation("org.testcontainers:testcontainers-spock")
 	testImplementation("org.springframework.cloud:spring-cloud-stream-test-binder")
-	testImplementation("org.springframework.boot:spring-boot-starter-kafka-test")
+	testImplementation("org.springframework.boot:spring-boot-starter-kafka-test") {
+		exclude(group = "org.apache.kafka", module = "kafka-clients")
+	}
+	testImplementation(libs.kafka.clients)
 	testImplementation("org.testcontainers:testcontainers-kafka")
 	testImplementation("org.testcontainers:testcontainers-vault")
 

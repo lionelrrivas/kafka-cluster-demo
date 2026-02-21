@@ -4,3 +4,10 @@ spring:
   cloud:
     vault:
       enabled: false
+    stream:
+      binders:
+        correspondence-status-binder:
+          type: kafka
+  threads:
+    virtual:
+      enabled: true
